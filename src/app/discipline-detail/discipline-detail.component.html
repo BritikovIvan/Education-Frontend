@@ -1,0 +1,19 @@
+<div *ngIf="discipline">
+    <h2>{{discipline.name}} Details</h2>
+    <div><span>id: </span>{{discipline.id}}</div>
+    <div>
+      <label for="discipline-name">Discipline: </label>
+      <input id="discipline-name" [(ngModel)]="discipline.name" placeholder="Discipline name"/>
+    </div>
+    <div>
+        <label for="discipline-abbreviation">Abbreviation: </label>
+        <input id="discipline-abbreviation" [(ngModel)]="discipline.abbreviation" placeholder="Discipline abbreviation"/>
+    </div>
+    <div>
+        <label for="discipline-description">Description: </label>
+        <input id="discipline-description" [(ngModel)]="discipline.description" placeholder="Discipline description"/>
+    </div>
+    <button (click)="goBack()">go back</button>
+    <button (click)="save()">save</button>
+</div>
+  

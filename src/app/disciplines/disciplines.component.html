@@ -1,0 +1,22 @@
+<h2>My disciplines</h2>
+
+<div>
+  <label id="new-discipline-name">Discipline name: </label>
+  <input for="new-discipline-name" #disciplineName />
+  <label id="new-discipline-abbreviation">Abbreviation: </label>
+  <input for="new-discipline-abbreviation" #disciplineAbbreviation />
+  <label id="new-discipline-description">Description: </label>
+  <input for="new-discipline-description" #disciplineDescription />
+  <button class="add-button" (click)="add(disciplineName.value, disciplineAbbreviation.value, disciplineDescription.value);
+            disciplineName.value=''; disciplineAbbreviation.value=''; disciplineDescription.value=''">
+    Add discipline
+  </button>
+</div>
+
+<ul class="disciplines">
+  <li *ngFor="let discipline of disciplines">
+    <a routerLink="/disciplines/{{discipline.id}}">
+      <span class="badge">{{discipline.id}}</span> {{discipline.name}}
+    </a>
+  </li>
+</ul>
