@@ -1,1 +1,49 @@
+<h2>Educational materials</h2>
 
+<div>
+    <label id="new-material-name">Material name: </label>
+    <input for="new-material-name" #materialName />
+    <label id="new-material-type">Material type: </label>
+    <input for="new-material-type" #materialType />
+    <label id="new-material-discipline">Discipline: </label>
+    <input for="new-material-discipline" #materialDiscipline />
+    <label id="new-material-reviewer">Reviewer: </label>
+    <input for="new-material-reviewer" #materialReviewer />
+    <label id="new-material-description">Description: </label>
+    <input for="new-material-description" #materialDescription />
+    <button class="add-button" (click)="add(materialName.value, materialType.value, materialDiscipline.value, materialReviewer.value, materialDescription.value);
+              materialName.value=''; materialType.value=''; materialDiscipline.value=''; materialReviewer.value=''; materialDescription.value=''">
+      Add material
+    </button>
+  </div>
+
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Creation date</th>
+        <th scope="col">Finish date</th>
+        <th scope="col">Discipline</th>
+        <th scope="col">Author</th>
+        <th scope="col">Reviewer</th>
+        <th scope="col">Description</th>
+        <th scope="col">Review status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let material of materials">
+        <th scope="row">{{material.id}}</th>
+        <td><a routerLink="/disciplines/{{material.id}}">{{material.name}}</a></td>
+        <td>{{material.type}}</td>
+        <td>{{material.creationDate}}</td>
+        <td>{{material.reviewFinishDate}}</td>
+        <td>{{material.discipline}}</td>
+        <td>{{material.author}}</td>
+        <td>{{material.reviewer}}</td>
+        <td>{{material.description}}</td>
+        <td>{{material.reviewStatus}}</td>
+      </tr>
+    </tbody>
+  </table>

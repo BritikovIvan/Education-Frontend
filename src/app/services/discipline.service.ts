@@ -19,7 +19,7 @@ export class DisciplineService {
   constructor(private http: HttpClient) { }
 
   getDisciplines(): Observable<Discipline[]> {
-    return this.http.get<Discipline[]>(this.disciplinesUrl);
+    return this.http.get<Discipline[]>(this.disciplinesUrl, );
   }
 
   getDiscipline(id: number): Observable<Discipline> {
