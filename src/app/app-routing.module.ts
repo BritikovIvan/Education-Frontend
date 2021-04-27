@@ -17,7 +17,6 @@ const routes: Routes = [
   { path: 'materials', component: MaterialsComponent},
   { path: 'materials/:id', component: MaterialDetailComponent},
   { path: 'login', component: LoginComponent},
-  // { path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

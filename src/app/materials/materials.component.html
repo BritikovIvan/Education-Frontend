@@ -4,7 +4,9 @@
     <label id="new-material-name">Material name: </label>
     <input for="new-material-name" #materialName />
     <label id="new-material-type">Material type: </label>
-    <input for="new-material-type" #materialType />
+    <select for="new-material-type" class="form-select form-select-lg mb-3" [(ngModel)]="type">
+      <option *ngFor="let materialType of materialTypes | keyvalue" value={{materialType.key}}>{{materialType.value}}</option>
+    </select>
     <label id="new-material-discipline">Discipline: </label>
     <select for="new-material-discipline" class="form-select form-select-lg mb-3" [(ngModel)]="disciplineId">
       <option *ngFor="let discipline of disciplines" value={{discipline.id}}>{{discipline.name}}</option>
@@ -13,8 +15,8 @@
     <input for="new-material-reviewer" #materialReviewer />
     <label id="new-material-description">Description: </label>
     <input for="new-material-description" #materialDescription />
-    <button class="add-button" (click)="add(materialName.value, materialType.value, materialReviewer.value, materialDescription.value);
-              materialName.value=''; materialType.value=''; materialReviewer.value=''; materialDescription.value=''">
+    <button class="add-button" (click)="add(materialName.value, materialReviewer.value, materialDescription.value);
+              materialName.value=''; materialReviewer.value=''; materialDescription.value=''">
       Add material
     </button>
   </div>

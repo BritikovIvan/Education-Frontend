@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Material } from '../model/material';
+import { Material, MaterialType } from '../model/material';
 import { Discipline } from '../model/discipline';
 import { MaterialService } from '../services/material.service';
 import { DisciplineService } from '../services/discipline.service';
@@ -16,6 +16,10 @@ export class MaterialsComponent implements OnInit {
 
   materials!: Material[];
 
+  type!: MaterialType;
+
+  materialTypes = MaterialType;
+
   disciplines!: Discipline[];
 
   constructor(private materialService: MaterialService, private disciplineService: DisciplineService) { }
@@ -30,16 +34,15 @@ export class MaterialsComponent implements OnInit {
       .subscribe(materials => this.materials = materials);
   }
 
-  add(name: string, type: string, reviewer: string, description: string): void {
+  add(name: string, reviewer: string, description: string): void {
     name = name.trim();
-    type = type.trim();
     reviewer = reviewer.trim();
     description = description.trim();
     if (!name) { return; }
-    if (!type) { return; }
+    if (!this.type) { return; }
     this.materialService.addMaterial({
       name: name,
-      type: type,
+      type: this.type,
       discipline: { id: this.disciplineId },
       reviewer: reviewer,
       description: description

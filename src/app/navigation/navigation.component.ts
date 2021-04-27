@@ -26,9 +26,7 @@ export class NavigationComponent implements OnInit {
   }
 
   logout(): void {
-  }
-
-  login(): void {
+    this.authService.logout();
   }
 
 }
