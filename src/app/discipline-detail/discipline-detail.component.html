@@ -13,7 +13,11 @@
         <label for="discipline-description">Description: </label>
         <input id="discipline-description" [(ngModel)]="discipline.description" placeholder="Discipline description"/>
     </div>
-    <button (click)="goBack()">go back</button>
-    <button (click)="save()">save</button>
+    <div>
+        <label for="discipline-author">Author: </label>
+        <input id="discipline-author" [(ngModel)]="discipline.author" placeholder="Discipline author"/>
+    </div>
+    <button (click)="goBack()">Back</button>
+    <button (click)="save()">Save</button>
 </div>
   

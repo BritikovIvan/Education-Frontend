@@ -1,37 +1,50 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import { tap, delay } from 'rxjs/operators';
-import { InMemoryDataService } from './in-memory-data.service';
+import { AuthResponse } from '../model/authResponse';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  isUserLoggedIn: boolean = false;
+  private authUrl = 'api/login';
 
-  login(userName: string, password: string): Observable<any> {
-    // this.http.post(this.userUrl, this.form.value)
-    //   .subscribe(() => {
-    //     console.log(userName);
-    //     console.log(password);
-    //     this.isUserLoggedIn = userName == 'admin' && password == 'admin';
-    //     localStorage.setItem('isUserLoggedIn', this.isUserLoggedIn ? "true" : "false"); 
-    //   });
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
-    return of(this.isUserLoggedIn).pipe(
-      delay(1000),
-      tap(val => { 
-         console.log("Is User Authentication is successful: " + val); 
-      })
-    );
+  private user?: User;
+
+  private token?: string;
+
+  login(email: string, password: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(this.authUrl, {
+      email: email,
+      password: password
+    }, this.httpOptions)
+      .pipe(tap(response => {
+        this.user = response.user;
+        this.token = response.token;
+      }));
   }
 
-  logout(): void {
-   this.isUserLoggedIn = false;
-      localStorage.removeItem('isUserLoggedIn'); 
+  logout(): void { 
+    this.user = undefined;
+    this.token = undefined;
   }
 
-  constructor(private inMemoryService: InMemoryDataService) { }
+  constructor(private http: HttpClient) { }
+
+  getUser(): User | undefined {
+    return this.user;
+  }
+
+  getToken(): string | undefined {
+    return this.token;
+  }
 }

@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
-import { Discipline } from '../models/discipline';
+import { Discipline } from '../model/discipline';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,10 @@ export class DisciplineService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getDisciplines(): Observable<Discipline[]> {
-    return this.http.get<Discipline[]>(this.disciplinesUrl, );
+    return this.http.get<Discipline[]>(this.disciplinesUrl);
   }
 
   getDiscipline(id: number): Observable<Discipline> {

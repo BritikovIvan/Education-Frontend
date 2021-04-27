@@ -6,13 +6,15 @@
     <label id="new-material-type">Material type: </label>
     <input for="new-material-type" #materialType />
     <label id="new-material-discipline">Discipline: </label>
-    <input for="new-material-discipline" #materialDiscipline />
+    <select for="new-material-discipline" class="form-select form-select-lg mb-3" [(ngModel)]="disciplineId">
+      <option *ngFor="let discipline of disciplines" value={{discipline.id}}>{{discipline.name}}</option>
+    </select>
     <label id="new-material-reviewer">Reviewer: </label>
     <input for="new-material-reviewer" #materialReviewer />
     <label id="new-material-description">Description: </label>
     <input for="new-material-description" #materialDescription />
-    <button class="add-button" (click)="add(materialName.value, materialType.value, materialDiscipline.value, materialReviewer.value, materialDescription.value);
-              materialName.value=''; materialType.value=''; materialDiscipline.value=''; materialReviewer.value=''; materialDescription.value=''">
+    <button class="add-button" (click)="add(materialName.value, materialType.value, materialReviewer.value, materialDescription.value);
+              materialName.value=''; materialType.value=''; materialReviewer.value=''; materialDescription.value=''">
       Add material
     </button>
   </div>
@@ -35,11 +37,11 @@
     <tbody>
       <tr *ngFor="let material of materials">
         <th scope="row">{{material.id}}</th>
-        <td><a routerLink="/disciplines/{{material.id}}">{{material.name}}</a></td>
+        <td><a routerLink="/materials/{{material.id}}">{{material.name}}</a></td>
         <td>{{material.type}}</td>
         <td>{{material.creationDate}}</td>
         <td>{{material.reviewFinishDate}}</td>
-        <td>{{material.discipline}}</td>
+        <td>{{material.discipline.name}}</td>
         <td>{{material.author}}</td>
         <td>{{material.reviewer}}</td>
         <td>{{material.description}}</td>

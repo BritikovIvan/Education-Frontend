@@ -3,4 +3,5 @@ export interface Discipline {
     name: string;
     abbreviation: string;
     description: string;
+    author: string;
 }

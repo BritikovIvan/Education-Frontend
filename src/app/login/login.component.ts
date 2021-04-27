@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,22 +8,14 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  private userUrl = 'api/user';
-
-  form!: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group( {
-      email: '',
-      password: ''
-    } )
   }
 
-  submit(): void {
-    this.http.post(this.userUrl, this.form.value)
-      .subscribe(() => this.router.navigate(['/'])); //authService.login().subscribe()
+  login(email: string, password: string): void {
+    this.authService.login(email, password)
+        .subscribe(() => console.log('login'));
   }
 
 }

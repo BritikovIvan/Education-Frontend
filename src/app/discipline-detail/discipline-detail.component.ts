@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Discipline } from '../models/discipline';
+import { Discipline } from '../model/discipline';
 import { DisciplineService } from '../services/discipline.service';
 
 
@@ -24,11 +24,9 @@ export class DisciplineDetailComponent implements OnInit {
   }
 
   getDiscipline(): void {
-    const id = +(this.route.snapshot.paramMap.get('id') || -1);
-    if (id !== -1) {
-      this.disciplineService.getDiscipline(id)
-        .subscribe(discipline => this.discipline = discipline);
-    }
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.disciplineService.getDiscipline(id)
+      .subscribe(discipline => this.discipline = discipline);
   }
 
   goBack(): void {

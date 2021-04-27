@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,16 +12,17 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { DisciplineDetailComponent } from './discipline-detail/discipline-detail.component';
 import { DisciplinesComponent } from './disciplines/disciplines.component';
 import { MaterialsComponent } from './materials/materials.component';
+import { MaterialDetailComponent } from './material-detail/material-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     NavigationComponent,
     DisciplineDetailComponent,
     DisciplinesComponent,
-    MaterialsComponent
+    MaterialsComponent,
+    MaterialDetailComponent
   ],
   imports: [
     BrowserModule,

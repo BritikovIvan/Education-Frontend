@@ -3,7 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
-import { Material } from '../models/material';
+import { Material } from '../model/material';
+import { User } from '../model/user';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +18,11 @@ export class MaterialService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getMaterials(): Observable<Material[]> {
-    return this.http.get<Material[]>(this.materialsUrl, );
+    const url = `${this.materialsUrl}?userId=${this.authService.getUser()?.id}`;
+    return this.http.get<Material[]>(url);
   }
 
   getMaterial(id: number): Observable<Material> {

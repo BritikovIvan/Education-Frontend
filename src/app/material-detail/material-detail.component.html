@@ -1,0 +1,30 @@
+<div *ngIf="material">
+    <h2>{{material.name}} Details</h2>
+    <div><span>id: </span>{{material.id}}</div>
+    <div>
+      <label for="material-name">Material: </label>
+      <input id="material-name" [(ngModel)]="material.name" placeholder="Material name"/>
+    </div>
+    <div>
+        <label for="material-type">Material type: </label>
+        <input id="material-type" [(ngModel)]="material.type" placeholder="Material type"/>
+    </div>
+    <div>
+        <label for="material-discipline">Academic discipline: </label>
+        <input id="material-discipline" [(ngModel)]="material.discipline" placeholder="Academic discipline"/>
+    </div>
+    <div>
+        <label for="material-author">Material author: </label>
+        <input id="material-author" [(ngModel)]="material.author" placeholder="Material author"/>
+    </div>
+    <div>
+        <label for="material-reviewer">Material reviewer: </label>
+        <input id="material-reviewer" [(ngModel)]="material.reviewer" placeholder="Material reviewer"/>
+    </div>
+    <div>
+        <label for="material-description">Material description: </label>
+        <input id="material-description" [(ngModel)]="material.description" placeholder="Material description"/>
+    </div>
+    <button (click)="goBack()">Back</button>
+    <button (click)="save()">Save</button>
+</div>
