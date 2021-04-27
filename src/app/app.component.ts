@@ -2,24 +2,20 @@ import { Component } from '@angular/core';
 
 import { AuthService } from './services/auth.service';
 
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Expense Manager';
-  isUserLoggedIn = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private titleService: Title) {
+    this.titleService.setTitle("Education");
+  }
 
   ngOnInit() {
-    let storeData = localStorage.getItem("isUserLoggedIn");
-    console.log("StoreData: " + storeData);
-
-    if( storeData != null && storeData == "true")
-       this.isUserLoggedIn = true;
-    else
-       this.isUserLoggedIn = false;
+    
    }
 }

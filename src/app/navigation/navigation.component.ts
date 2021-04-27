@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user';
+import { UserRole} from '../model/user';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -11,6 +12,8 @@ import { AuthService } from '../services/auth.service';
 export class NavigationComponent implements OnInit {
 
   user!: User | undefined;
+
+  userRole = UserRole;
 
   constructor(private authService: AuthService) { }
 

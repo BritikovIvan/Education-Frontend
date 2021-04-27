@@ -13,6 +13,7 @@ import { DisciplineDetailComponent } from './discipline-detail/discipline-detail
 import { DisciplinesComponent } from './disciplines/disciplines.component';
 import { MaterialsComponent } from './materials/materials.component';
 import { MaterialDetailComponent } from './material-detail/material-detail.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MaterialDetailComponent } from './material-detail/material-detail.compo
     DisciplineDetailComponent,
     DisciplinesComponent,
     MaterialsComponent,
-    MaterialDetailComponent
+    MaterialDetailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
