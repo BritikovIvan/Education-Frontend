@@ -18,7 +18,7 @@ export class NavigationComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    
+    this.getUser();
   }
 
   getUser(): void {

@@ -18,7 +18,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {id: 1, name: 'ProgrammingLab', type: 'Laboratory work', creationDate: '2020-11-30', reviewFinishDate: '2021-01-04', discipline: {
         id: 1, name: 'Programming', abbreviation: 'OAIP', description: 'string', author: 'SomeAuthor'
       }, 
-      author: 'Some Author', reviewer: 'Some Reviewer', description: 'string2', reviewStatus: 'open'}
+      author: 'Some Author', reviewer: 'Some Reviewer', description: 'string2', reviewStatus: 'Draft'}
     ]
     const disciplines = [
       {id: 1, name: 'Programming', abbreviation: 'OAIP', description: 'string', author: 'SomeAuthor'},
