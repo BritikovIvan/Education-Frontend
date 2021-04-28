@@ -1,6 +1,6 @@
 <h2>Educational materials</h2>
 
-<div>
+<div *ngIf="user && user.role === userRole.Teacher">
     <label id="new-material-name">Material name: </label>
     <input for="new-material-name" #materialName />
     <label id="new-material-type">Material type: </label>

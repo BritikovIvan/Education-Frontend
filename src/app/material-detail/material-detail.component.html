@@ -39,8 +39,8 @@
     </div>
     <div>
         <label for="material-status">Review status: </label>
-        <select id="material-status" class="form-select form-select-lg mb-3" [(ngModel)]="status">
-        <option *ngFor="let reviewStatus of reviewStatuses | keyvalue" value={{reviewStatus.key}}>{{reviewStatus.value}}</option>
+        <select id="material-status" class="form-select form-select-lg mb-3" ng-options="option.key for option in reviewStatuses track by option.key" ng-model="selected">
+        <!-- <option *ngFor="let reviewStatus of reviewStatuses | keyvalue" value={{reviewStatus.key}}>{{reviewStatus.value}}</option> -->
         </select>
     </div>
     <button (click)="goBack()">Back</button>

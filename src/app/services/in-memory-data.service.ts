@@ -7,6 +7,7 @@ import { Discipline } from '../model/discipline';
 @Injectable({
   providedIn: 'root'
 })
+
 export class InMemoryDataService implements InMemoryDbService {
 
   createDb() {

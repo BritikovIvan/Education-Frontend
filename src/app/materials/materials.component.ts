@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Material, MaterialType } from '../model/material';
+import { User, UserRole } from '../model/user';
 import { Discipline } from '../model/discipline';
 import { MaterialService } from '../services/material.service';
 import { DisciplineService } from '../services/discipline.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-materials',
@@ -22,7 +24,11 @@ export class MaterialsComponent implements OnInit {
 
   disciplines!: Discipline[];
 
-  constructor(private materialService: MaterialService, private disciplineService: DisciplineService) { }
+  user?: User | undefined;
+
+  userRole = UserRole;
+
+  constructor(private materialService: MaterialService, private disciplineService: DisciplineService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getMaterials();
@@ -52,6 +58,10 @@ export class MaterialsComponent implements OnInit {
   getDisciplines():void {
     this.disciplineService.getDisciplines()
       .subscribe(disciplines => this.disciplines = disciplines);
+  }
+
+  getUser(): void {
+    this.user = this.authService.getUser();
   }
 
 }

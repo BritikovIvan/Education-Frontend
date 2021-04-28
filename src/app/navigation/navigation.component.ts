@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { User } from '../model/user';
 import { UserRole} from '../model/user';
 import { AuthService } from '../services/auth.service';
@@ -11,14 +14,20 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavigationComponent implements OnInit {
 
-  user!: User | undefined;
+  user?: User | undefined;
 
   userRole = UserRole;
 
-  constructor(private authService: AuthService) { }
+  navStart: Observable<NavigationStart>;
+
+  constructor(private authService: AuthService, private router: Router) {
+    this.navStart = router.events.pipe(
+      filter(evt => evt instanceof NavigationStart)
+    ) as Observable<NavigationStart>;
+   }
 
   ngOnInit(): void {
-    this.getUser();
+    this.navStart.subscribe(evt => this.getUser());
   }
 
   getUser(): void {
@@ -27,6 +36,8 @@ export class NavigationComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+    this.user = undefined;
+    this.router.navigate(['/']);
   }
 
 }

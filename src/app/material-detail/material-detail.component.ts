@@ -21,7 +21,7 @@ export class MaterialDetailComponent implements OnInit {
 
   status!: ReviewStatus;
 
-  user!: User | undefined;
+  user: User | undefined = {id: 1, role: 'Professor' as UserRole} as User;
 
   userRoles = UserRole;
 
