@@ -36,12 +36,12 @@ export class MaterialService {
   }
 
   getTeacherMaterials(): Observable<Material[]> {
-    const url = `${this.materialsUrl}?authorId=${this.authService.getUser()?.id}`;
+    const url = `${this.materialsUrl}/teacher?teacherId=${this.authService.getUser()?.id}`;
     return this.http.get<Material[]>(url);
   }
 
   getProfessorMaterials(): Observable<Material[]> {
-    const url = `${this.materialsUrl}?reviewerId=${this.authService.getUser()?.id}`;
+    const url = `${this.materialsUrl}/professor?professorId=${this.authService.getUser()?.id}`;
     return this.http.get<Material[]>(url);
   }
 

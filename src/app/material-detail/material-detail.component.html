@@ -16,11 +16,11 @@
         </div>
         <div>
             <label for="material-author">Material author: </label>
-            <input id="material-author" [(ngModel)]="material.author" placeholder="Material author"/>
+            <input id="material-author" [(ngModel)]="material.author.fullName" placeholder="Material author"/>
         </div>
         <div>
             <label for="material-reviewer">Material reviewer: </label>
-            <input id="material-reviewer" [(ngModel)]="material.reviewer" placeholder="Material reviewer"/>
+            <input id="material-reviewer" [(ngModel)]="material.reviewer.fullName" placeholder="Material reviewer"/>
         </div>
         <div>
             <label for="material-description">Material description: </label>
@@ -33,8 +33,8 @@
         <div><span>Material: </span>{{material.name}}</div>
         <div><span>Material type: </span>{{material.type}}</div>
         <div><span>Academic discipline: </span>{{material.academicDiscipline.name}}</div>
-        <div><span>Material author: </span>{{material.author}}</div>
-        <div><span>Material reviewer: </span>{{material.reviewer}}</div>
+        <div><span>Material author: </span>{{material.author.fullName}}</div>
+        <div><span>Material reviewer: </span>{{material.reviewer.fullName}}</div>
         <div><span>Material description: </span>{{material.description}}</div>
     </div>
     <div>

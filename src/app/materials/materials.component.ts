@@ -33,6 +33,7 @@ export class MaterialsComponent implements OnInit {
   ngOnInit(): void {
     this.getMaterials();
     this.getDisciplines();
+    this.getUser();
   }
 
   getMaterials(): void {
