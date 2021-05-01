@@ -28,7 +28,7 @@ export class InMemoryDataService implements InMemoryDbService {
     const authResponse = 
       {user: {id: 1, fullname: 'John', email: 'some@gmail.com', password: '1111', role: 'Professor'}, token: 'someToken'}
   
-    return {materials: materials, disciplines: disciplines, users: users, authResponse: authResponse};
+    return {};
   }
 
   constructor() { }

@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 })
 export class DisciplineService {
 
-  private disciplinesUrl = 'api/disciplines';
+  private disciplinesUrl = 'http://localhost:8080/api/disciplines';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

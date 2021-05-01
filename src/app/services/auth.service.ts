@@ -13,8 +13,8 @@ import { User, UserRole } from '../model/user';
 export class AuthService {
 
   users: User[] = [
-    {id: 1, fullname: 'John', email: 'some@gmail.com', password: '1111', role: 'Professor' as UserRole},
-    {id: 1, fullname: 'Jane', email: 'some1@gmail.com', password: '2222', role: 'Teacher' as UserRole}
+    {id: 1, fullName: 'John', email: 'some@gmail.com', password: '1111', role: 'Professor' as UserRole},
+    {id: 1, fullName: 'Jane', email: 'some1@gmail.com', password: '2222', role: 'Teacher' as UserRole}
   ]
 
   private authUrl = 'api/login';
