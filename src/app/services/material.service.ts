@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { Material } from '../model/material';
-import { User } from '../model/user';
+import { User, UserRole } from '../model/user';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
 })
 export class MaterialService {
 
-  private materialsUrl = 'api/materials';
+  private materialsUrl = 'http://localhost:8080/api/materials';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,8 +20,28 @@ export class MaterialService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
+  // getMaterials(): Observable<Material[]> {
+  //   const url = `${this.materialsUrl}?userId=${this.authService.getUser()?.id}`;
+  //   return this.http.get<Material[]>(url);
+  // }
+
   getMaterials(): Observable<Material[]> {
-    const url = `${this.materialsUrl}?userId=${this.authService.getUser()?.id}`;
+    if (this.authService.getUser()?.role === UserRole.Professor) {
+      return this.getProfessorMaterials();
+    }
+    if (this.authService.getUser()?.role === UserRole.Teacher) {
+      return this.getTeacherMaterials();
+    }
+    return new Observable();
+  }
+
+  getTeacherMaterials(): Observable<Material[]> {
+    const url = `${this.materialsUrl}?authorId=${this.authService.getUser()?.id}`;
+    return this.http.get<Material[]>(url);
+  }
+
+  getProfessorMaterials(): Observable<Material[]> {
+    const url = `${this.materialsUrl}?reviewerId=${this.authService.getUser()?.id}`;
     return this.http.get<Material[]>(url);
   }
 

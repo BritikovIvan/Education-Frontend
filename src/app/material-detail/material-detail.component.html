@@ -12,7 +12,7 @@
         </div>
         <div>
             <label for="material-discipline">Academic discipline: </label>
-            <input id="material-discipline" [(ngModel)]="material.discipline.name" placeholder="Academic discipline"/>
+            <input id="material-discipline" [(ngModel)]="material.academicDiscipline.name" placeholder="Academic discipline"/>
         </div>
         <div>
             <label for="material-author">Material author: </label>
@@ -32,7 +32,7 @@
         <div><span>id: </span>{{material.id}}</div>
         <div><span>Material: </span>{{material.name}}</div>
         <div><span>Material type: </span>{{material.type}}</div>
-        <div><span>Academic discipline: </span>{{material.discipline.name}}</div>
+        <div><span>Academic discipline: </span>{{material.academicDiscipline.name}}</div>
         <div><span>Material author: </span>{{material.author}}</div>
         <div><span>Material reviewer: </span>{{material.reviewer}}</div>
         <div><span>Material description: </span>{{material.description}}</div>

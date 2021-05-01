@@ -1,4 +1,5 @@
 import { Discipline } from "./discipline";
+import { User } from "./user";
 
 export interface Material {
     id: number;
@@ -6,9 +7,9 @@ export interface Material {
     type: MaterialType;
     creationDate: Date;
     reviewFinishDate: Date;
-    discipline: Discipline;
-    author: string;
-    reviewer: string;
+    academicDiscipline: Discipline;
+    author: User;
+    reviewer: User;
     description: string;
     reviewStatus: ReviewStatus;
 }

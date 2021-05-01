@@ -49,8 +49,8 @@ export class MaterialsComponent implements OnInit {
     this.materialService.addMaterial({
       name: name,
       type: this.type,
-      discipline: { id: this.disciplineId },
-      reviewer: reviewer,
+      academicDiscipline: { id: this.disciplineId } as Discipline,
+      reviewer: {} as User,
       description: description
     } as Material).subscribe(material => {this.materials.push(material); });
   }
