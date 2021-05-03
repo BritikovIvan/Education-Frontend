@@ -14,8 +14,10 @@
         <input id="discipline-description" [(ngModel)]="discipline.description" placeholder="Discipline description"/>
     </div>
     <div>
-        <label for="discipline-author">Author: </label>
-        <input id="discipline-author" [(ngModel)]="discipline.author.fullName" placeholder="Discipline author"/>
+        <label id="discipline-author">Author: </label>
+        <select for="discipline-author" class="form-select form-select-lg mb-3" [(ngModel)]="authorId">
+            <option *ngFor="let author of authors" value={{author.id}}>{{author.fullName}}</option>
+        </select>
     </div>
     <button (click)="goBack()">Back</button>
     <button (click)="save()">Save</button>

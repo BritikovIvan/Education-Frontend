@@ -15,18 +15,18 @@ export interface Material {
 }
 
 export enum MaterialType {
-    Workshop = "Workshop",
-    Questionnaire = "Questionnaire",
-    Test = "Test",
-    Laboratory_work = "Laboratory work",
-    Exam = "Exam"
+    WORKSHOP = "Workshop",
+    QUESTIONNAIRE = "Questionnaire",
+    TEST = "Test",
+    LABORATORY_WORK = "Laboratory work",
+    EXAM = "Exam"
 }
 
 export enum ReviewStatus {
-    Draft = "Draft",
-    Ready_for_review = "Ready for review",
-    Under_review = "Under review",
-    Back_to_rework = "Back to rework",
-    Cancelled = "Cancelled",
-    Reviewed = "Reviewed"
+    DRAFT = "Draft",
+    READY_FOR_REVIEW = "Ready for review",
+    UNDER_REVIEW = "Under review",
+    BACK_TO_REWORK = "Back to rework",
+    CANCRLLED = "Cancelled",
+    REVIEWED = "Reviewed"
 }

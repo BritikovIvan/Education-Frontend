@@ -3,10 +3,10 @@
       <a routerLink="/" class="navbar-brand">Home</a>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item" *ngIf="user && user.role === userRole.Professor">
+          <li class="nav-item" *ngIf="user && user.role === userRole.PROFESSOR">
             <a routerLink="/disciplines" class="nav-link">Disciplines</a>
           </li>
-          <li class="nav-item" *ngIf="user && (user.role === userRole.Professor || user.role === userRole.Teacher)">
+          <li class="nav-item" *ngIf="user && (user.role === userRole.PROFESSOR || user.role === userRole.TEACHER)">
             <a routerLink="/materials" class="nav-link">Materials</a>
           </li>
         </ul>

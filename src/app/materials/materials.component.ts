@@ -6,6 +6,7 @@ import { Discipline } from '../model/discipline';
 import { MaterialService } from '../services/material.service';
 import { DisciplineService } from '../services/discipline.service';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-materials',
@@ -28,12 +29,20 @@ export class MaterialsComponent implements OnInit {
 
   userRole = UserRole;
 
-  constructor(private materialService: MaterialService, private disciplineService: DisciplineService, private authService: AuthService) { }
+  reviewerId: number = 0;
+
+  reviewers!: User[];
+
+  constructor(private materialService: MaterialService, 
+    private disciplineService: DisciplineService, 
+    private authService: AuthService,
+    private userService: UserService) { }
 
   ngOnInit(): void {
     this.getMaterials();
     this.getDisciplines();
     this.getUser();
+    this.getReviewers();
   }
 
   getMaterials(): void {
@@ -41,18 +50,23 @@ export class MaterialsComponent implements OnInit {
       .subscribe(materials => this.materials = materials);
   }
 
-  add(name: string, reviewer: string, description: string): void {
+  getReviewers(): void {
+    this.userService.getProfessors()
+      .subscribe(reviewers => this.reviewers = reviewers);
+  }
+
+  add(name: string, description: string): void {
     name = name.trim();
-    reviewer = reviewer.trim();
     description = description.trim();
     if (!name) { return; }
     if (!this.type) { return; }
+
     this.materialService.addMaterial({
-      name: name,
-      type: this.type,
-      academicDiscipline: { id: this.disciplineId } as Discipline,
-      reviewer: {} as User,
-      description: description
+        name: name,
+        type: this.type,
+        academicDiscipline: { id: this.disciplineId } as Discipline,
+        reviewer:  { id: this.reviewerId } as User,
+        description: description
     } as Material).subscribe(material => {this.materials.push(material); });
   }
 

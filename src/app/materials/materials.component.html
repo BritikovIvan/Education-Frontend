@@ -1,6 +1,6 @@
 <h2>Educational materials</h2>
 
-<div *ngIf="user && user.role === userRole.Teacher">
+<div *ngIf="user && user.role === userRole.TEACHER">
     <label id="new-material-name">Material name: </label>
     <input for="new-material-name" #materialName />
     <label id="new-material-type">Material type: </label>
@@ -11,12 +11,16 @@
     <select for="new-material-discipline" class="form-select form-select-lg mb-3" [(ngModel)]="disciplineId">
       <option *ngFor="let discipline of disciplines" value={{discipline.id}}>{{discipline.name}}</option>
     </select>
+    <!-- <label id="new-material-reviewer">Reviewer: </label>
+    <input for="new-material-reviewer" #materialReviewer /> -->
     <label id="new-material-reviewer">Reviewer: </label>
-    <input for="new-material-reviewer" #materialReviewer />
+    <select for="new-material-reviewer" class="form-select form-select-lg mb-3" [(ngModel)]="reviewerId">
+      <option *ngFor="let reviewer of reviewers" value={{reviewer.id}}>{{reviewer.fullName}}</option>
+    </select>
     <label id="new-material-description">Description: </label>
     <input for="new-material-description" #materialDescription />
-    <button class="add-button" (click)="add(materialName.value, materialReviewer.value, materialDescription.value);
-              materialName.value=''; materialReviewer.value=''; materialDescription.value=''">
+    <button class="add-button" (click)="add(materialName.value, materialDescription.value);
+              materialName.value=''; materialDescription.value=''">
       Add material
     </button>
   </div>

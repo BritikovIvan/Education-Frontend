@@ -26,10 +26,10 @@ export class MaterialService {
   // }
 
   getMaterials(): Observable<Material[]> {
-    if (this.authService.getUser()?.role === UserRole.Professor) {
+    if (this.authService.getUser()?.role === UserRole.PROFESSOR) {
       return this.getProfessorMaterials();
     }
-    if (this.authService.getUser()?.role === UserRole.Teacher) {
+    if (this.authService.getUser()?.role === UserRole.TEACHER) {
       return this.getTeacherMaterials();
     }
     return new Observable();
@@ -54,7 +54,23 @@ export class MaterialService {
     return this.http.post<Material>(this.materialsUrl, material, this.httpOptions);
   }
 
-  updateMaterial(material: Material): Observable<any> {
-    return this.http.put(this.materialsUrl, material, this.httpOptions);
+  updateMaterial(material: Material): Observable<Material> {
+    if (this.authService.getUser()?.role === UserRole.PROFESSOR) {
+      return this.updateProfessorMaterial(material);
+    }
+    if (this.authService.getUser()?.role === UserRole.TEACHER) {
+      return this.updateTeacherMaterial(material);
+    }
+    return new Observable();
+  }
+
+  updateProfessorMaterial(material: Material): Observable<Material> {
+    const url = `${this.materialsUrl}/${material.id}/professor`;
+    return this.http.patch<Material>(url, material, this.httpOptions);
+  }
+
+  updateTeacherMaterial(material: Material): Observable<Material> {
+    const url = `${this.materialsUrl}/${material.id}/teacher`;
+    return this.http.patch<Material>(url, material, this.httpOptions);
   }
 }

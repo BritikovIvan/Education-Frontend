@@ -1,34 +1,56 @@
 <div *ngIf="material">
     <h2>{{material.name}} Details</h2>
-    <div *ngIf="user && user.role === userRoles.Teacher">
+    <div *ngIf="user && user.role === userRoles.TEACHER">
         <div><span>id: </span>{{material.id}}</div>
         <div>
         <label for="material-name">Material: </label>
         <input id="material-name" [(ngModel)]="material.name" placeholder="Material name"/>
         </div>
         <div>
-            <label for="material-type">Material type: </label>
-            <input id="material-type" [(ngModel)]="material.type" placeholder="Material type"/>
+            <!-- <label for="material-type">Material type: </label>
+            <input id="material-type" [(ngModel)]="material.type" placeholder="Material type"/> -->
+            <label id="material-type">Material type: </label>
+            <select for="material-type" class="form-select form-select-lg mb-3" [(ngModel)]="type">
+                <option *ngFor="let materialType of materialTypes | keyvalue" value={{materialType.key}}>{{materialType.value}}</option>
+            </select>
         </div>
         <div>
-            <label for="material-discipline">Academic discipline: </label>
-            <input id="material-discipline" [(ngModel)]="material.academicDiscipline.name" placeholder="Academic discipline"/>
+            <!-- <label for="material-discipline">Academic discipline: </label>
+            <input id="material-discipline" [(ngModel)]="material.academicDiscipline.name" placeholder="Academic discipline"/> -->
+            <label id="material-discipline">Discipline: </label>
+            <select for="new-material-discipline" class="form-select form-select-lg mb-3" [(ngModel)]="disciplineId">
+                <option *ngFor="let discipline of disciplines" value={{discipline.id}}>{{discipline.name}}</option>
+            </select>
         </div>
         <div>
-            <label for="material-author">Material author: </label>
-            <input id="material-author" [(ngModel)]="material.author.fullName" placeholder="Material author"/>
+            <!-- <label for="material-author">Material author: </label>
+            <input id="material-author" [(ngModel)]="material.author.fullName" placeholder="Material author"/> -->
+            <label id="material-author">Material author: </label>
+            <select for="material-author" class="form-select form-select-lg mb-3" [(ngModel)]="authorId">
+                <option *ngFor="let author of authors" value={{author.id}}>{{author.fullName}}</option>
+            </select>
         </div>
         <div>
-            <label for="material-reviewer">Material reviewer: </label>
-            <input id="material-reviewer" [(ngModel)]="material.reviewer.fullName" placeholder="Material reviewer"/>
+            <!-- <label for="material-reviewer">Material reviewer: </label>
+            <input id="material-reviewer" [(ngModel)]="material.reviewer.fullName" placeholder="Material reviewer"/> -->
+            <label id="material-reviewer">Reviewer: </label>
+            <select for="material-reviewer" class="form-select form-select-lg mb-3" [(ngModel)]="reviewerId">
+                <option *ngFor="let reviewer of reviewers" value={{reviewer.id}}>{{reviewer.fullName}}</option>
+            </select>
         </div>
         <div>
             <label for="material-description">Material description: </label>
             <input id="material-description" [(ngModel)]="material.description" placeholder="Material description"/>
         </div>
+        <div>
+            <label for="material-status">Review status: </label>
+            <select id="material-status" class="form-select form-select-lg mb-3" [(ngModel)]="status">
+                <option *ngFor="let reviewStatus of reviewStatuses | keyvalue" value={{reviewStatus.key}}>{{reviewStatus.value}}</option>
+            </select>
+        </div>
     </div>
 
-    <div *ngIf="user && user.role === userRoles.Professor">
+    <div *ngIf="user && user.role === userRoles.PROFESSOR">
         <div><span>id: </span>{{material.id}}</div>
         <div><span>Material: </span>{{material.name}}</div>
         <div><span>Material type: </span>{{material.type}}</div>
@@ -36,13 +58,20 @@
         <div><span>Material author: </span>{{material.author.fullName}}</div>
         <div><span>Material reviewer: </span>{{material.reviewer.fullName}}</div>
         <div><span>Material description: </span>{{material.description}}</div>
+        <div>
+            <label for="material-status">Review status: </label>
+            <select id="material-status" class="form-select form-select-lg mb-3" [(ngModel)]="status">
+                <option *ngFor="let reviewStatus of reviewStatuses | keyvalue" value={{reviewStatus.key}}>{{reviewStatus.value}}</option>
+            </select>
+        </div>
     </div>
-    <div>
+    <!-- <div>
         <label for="material-status">Review status: </label>
         <select id="material-status" class="form-select form-select-lg mb-3" ng-options="option.key for option in reviewStatuses track by option.key" ng-model="selected">
-        <!-- <option *ngFor="let reviewStatus of reviewStatuses | keyvalue" value={{reviewStatus.key}}>{{reviewStatus.value}}</option> -->
+        <option *ngFor="let reviewStatus of reviewStatuses | keyvalue" value={{reviewStatus.key}}>{{reviewStatus.value}}</option>
         </select>
-    </div>
+    </div> -->
+    
     <button (click)="goBack()">Back</button>
     <button (click)="save()">Save</button>
 </div>

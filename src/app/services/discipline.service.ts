@@ -33,6 +33,7 @@ export class DisciplineService {
   }
 
   updateDiscipline(discipline: Discipline): Observable<any> {
-    return this.http.put(this.disciplinesUrl, discipline, this.httpOptions);
+    const url = `${this.disciplinesUrl}/${discipline.id}`; 
+    return this.http.patch(url, discipline, this.httpOptions);
   }
 }
