@@ -17,7 +17,7 @@ export class AuthService {
     {id: 5, fullName: 'Jane', email: 'some1@gmail.com', password: '2222', role: 'Teacher' as UserRole}
   ]
 
-  private authUrl = 'api/login';
+  private authUrl = 'http://localhost:8080/api/login';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -38,9 +38,9 @@ export class AuthService {
     //   }));
     const user = this.users.find(u => u.email === email && u.password === password);
     const authResponse = {
-      token: 'aaa',
+      token: "sometoken",
       user: user
-    } as AuthResponse;
+    } as unknown as AuthResponse;
     return of(authResponse).pipe(tap(response => {
           this.user = response.user;
           this.token = response.token;

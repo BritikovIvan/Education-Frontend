@@ -36,21 +36,25 @@ export class MaterialService {
   }
 
   getTeacherMaterials(): Observable<Material[]> {
+    this.httpOptions.headers.set('token', `${this.authService.getToken}`);
     const url = `${this.materialsUrl}/teacher?teacherId=${this.authService.getUser()?.id}`;
-    return this.http.get<Material[]>(url);
+    return this.http.get<Material[]>(url, this.httpOptions);
   }
 
   getProfessorMaterials(): Observable<Material[]> {
+    this.httpOptions.headers.set('token', `${this.authService.getToken}`);
     const url = `${this.materialsUrl}/professor?professorId=${this.authService.getUser()?.id}`;
-    return this.http.get<Material[]>(url);
+    return this.http.get<Material[]>(url, this.httpOptions);
   }
 
   getMaterial(id: number): Observable<Material> {
+    this.httpOptions.headers.set('token', `${this.authService.getToken}`);
     const url = `${this.materialsUrl}/${id}`;
-    return this.http.get<Material>(url);
+    return this.http.get<Material>(url, this.httpOptions);
   }
 
   addMaterial(material: Material): Observable<Material> {
+    this.httpOptions.headers.set('token', `${this.authService.getToken}`);
     return this.http.post<Material>(this.materialsUrl, material, this.httpOptions);
   }
 
@@ -65,11 +69,13 @@ export class MaterialService {
   }
 
   updateProfessorMaterial(material: Material): Observable<Material> {
+    this.httpOptions.headers.set('token', `${this.authService.getToken}`);
     const url = `${this.materialsUrl}/${material.id}/professor`;
     return this.http.patch<Material>(url, material, this.httpOptions);
   }
 
   updateTeacherMaterial(material: Material): Observable<Material> {
+    this.httpOptions.headers.set('token', `${this.authService.getToken}`);
     const url = `${this.materialsUrl}/${material.id}/teacher`;
     return this.http.patch<Material>(url, material, this.httpOptions);
   }
